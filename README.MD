@@ -5,7 +5,7 @@
  - qui compile et execute le projet
 
 - mes methodes
-  - j'ai nommé mes methodes en cohérence avec les numero a taper sur les clavier
+  - j'ai nommé mes methodes en cohérence avec les numero à taper sur le clavier
    - if_one_then , if_two_then , if_three_then etc..
    - j'ai aussi des sous methodes pour diviser et reutilliser plusieurs fois
    - StringArrayLength, space_cals, show array etc...
