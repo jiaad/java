@@ -162,15 +162,36 @@ public static String[] price_total_per_section(String[] price, String[] sections
 
     i++;
   }
-  int m = 0;
-  while(totals[m] != null){
-  System.out.println("___ : "+ totals[m]);
-    m++;
-  }
+  // int m = 0;
+  // while(totals[m] != null){
+  // System.out.println("___ : "+ totals[m]);
+  //   m++;
+  // }
   return totals;
 }
 
+public static double sum_total(String[] totals){
+  double res = 0;
+  int i = 0;
+  while(totals[i] != null){
+   res += Double.parseDouble(totals[i]);
+    i++;
+  }
+//  System.out.println("the total is " + res);
+  return res;
+}
 
+
+public static void space_cals(String str){
+  System.out.print(str);
+  if (str.length() < 25) {
+    for (int i = str.length() ; i < 25  ;i++ ) {
+      System.out.print(" ");
+    }
+  }
+
+  // System.out.println();
+}
 
 public static void showDevis(String[] classes, String[] price, String[] sections){
   int i, j, k, l;
@@ -185,25 +206,31 @@ System.out.println("\n\n ==============================================\n\n");
 
 totals = price_total_per_section(price, sections);
 
-System.out.println("toooooooooooooo   :: " + totals);
   while(sections[i] != null){
-
-
     System.out.println("Sections " + i + ": " + sections[i]);
 
       j = 0;
 
       while(classes[j] != null){
         if (classes[j].charAt(0) ==  customIntToChar(i) ) {
-          System.out.println("     " + classes[j].substring(1) + "     " + price[j].substring(2));
+          // System.out.println("     " + classes[j].substring(1) + "     " + price[j].substring(2));
+
+         System.out.print("     ");
+         space_cals(classes[j].substring(1));
+         System.out.println(price[j].substring(2));
+
         }
         j++;
       }
+      System.out.println("---------------------------------------");
+      System.out.println("Sous-Total : " + totals[i]);
+      System.out.println("\n");
+
     i++;
   }
 
-  sum = 0;
-
+ sum = sum_total(totals);
+ System.out.println("---------------------------------------");
  System.out.println("the sum is ::  " + sum);
 
   System.out.println("\n\n ==============================================");
@@ -267,11 +294,14 @@ System.out.println("toooooooooooooo   :: " + totals);
         showDevis(classes, price, sections);
       } else if (loop_num == 6) {
         // i = true;
-        System.out.println("c ici en (IF): " + loop_num);
+        //System.out.println("c ici en (IF): " + loop_num);
+        showDevis(classes, price, sections);
+        System.out.println("AU REVOIR à BIENTOT");
+        i = true;
       } else if (loop_num == 7) {
         System.out.println("c izi en (ELSE) : " + loop_num);
         i = true;
-        afficher_text();
+        //afficher_text();
         // loop_num = "6";
 
       }else if (loop_num == 8) {
