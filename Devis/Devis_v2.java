@@ -14,6 +14,18 @@ public class Devis_v2 {
     System.out.println("7: Quitter sans editer");
   }
 
+  public static void space_cals(String str){
+    System.out.print(str);
+    if (str.length() < 25) {
+      for (int i = str.length() ; i < 25  ;i++ ) {
+        System.out.print(" ");
+      }
+    }
+
+    // System.out.println();
+  }
+
+
   public static char customIntToChar(int n){
   //int a=1;
   char res;
@@ -42,6 +54,22 @@ public class Devis_v2 {
     System.out.println("-----------------------------");
     System.out.println("\n \n \n \n");
 
+  }
+
+
+  public static void showArrayWithDetailsClassesPrices(String[] arr, String[] arr2) {
+    int i = 0;
+    System.out.println("\n \n \n \n");
+    // System.out.println("voici les lignes que vous avez le droit de supprimer");
+    System.out.println("---------------------------------------");
+    while (arr[i] != null) {
+      System.out.print("ligne " + i + ": ");
+      space_cals(arr[i].substring(1));
+      System.out.println(arr2[i].substring(2));
+      i++;
+    }
+    System.out.println("---------------------------------------");
+    System.out.println("\n \n \n \n");
   }
 
   public static void showArray(String[] arr) {
@@ -195,16 +223,6 @@ public static double sum_total(String[] totals){
 }
 
 
-public static void space_cals(String str){
-  System.out.print(str);
-  if (str.length() < 25) {
-    for (int i = str.length() ; i < 25  ;i++ ) {
-      System.out.print(" ");
-    }
-  }
-
-  // System.out.println();
-}
 
 public static void showDevis(String[] classes, String[] price, String[] sections){
   int i, j, k, l;
@@ -220,7 +238,7 @@ System.out.println("\n\n===============================================\n\n");
 totals = price_total_per_section(price, sections);
 
   while(sections[i] != null){
-    System.out.println("Sections " + i + ": " + sections[i]);
+    System.out.println(sections[i]);
       j = 0;
       while(classes[j] != null){
         if (classes[j].charAt(0) ==  customIntToChar(i) ) {
@@ -238,7 +256,7 @@ totals = price_total_per_section(price, sections);
   }
  sum = sum_total(totals);
  System.out.println("---------------------------------------");
- System.out.print("the sum is ::                 " + sum);
+ System.out.print("NET A PAYER ::                " + sum);
  System.out.println("\n\n==============================================");
 } // show devis
 
@@ -262,6 +280,7 @@ public static int return_current_section_index(String[] sections, int current_se
 
 public static void loop_that_contains_logic_of_function(String[] sections,String[] price, String[] classes, double prix_double, int loop_num, String names, boolean i, int arrLen, int current_sec_index){
   int num = 0;
+  if_three_then(names, arrLen, sections);
 
       while (i != true) {
         current_sec_index = return_current_section_index(sections,current_sec_index, loop_num);
@@ -278,7 +297,7 @@ public static void loop_that_contains_logic_of_function(String[] sections,String
           }else{
             System.out.println("voici les lignes que vous avez le droit de supprimer");
           //  int num;
-            showArrayWithDetails(classes);
+            showArrayWithDetailsClassesPrices(classes, price);
             System.out.print("choisissez un numero : ");
             num = Terminal.lireInt();
             classes = delete_classes_price(classes, num);
@@ -290,10 +309,10 @@ public static void loop_that_contains_logic_of_function(String[] sections,String
           showDevis(classes, price, sections);
         } else if (loop_num == 6) {
           showDevis(classes, price, sections);
-          System.out.println("AU REVOIR à BIENTOT");
+          // System.out.println("AU REVOIR à BIENTOT");
           i = true;
         } else if (loop_num == 7) {
-          System.out.println("c izi en (ELSE) : " + loop_num);
+          // System.out.println("c izi en (ELSE) : " + loop_num);
           i = true;
         }else if (loop_num == 8) {
           showArray(price);
@@ -316,44 +335,6 @@ public static void loop_that_contains_logic_of_function(String[] sections,String
     loop_num = '5';
 
     loop_that_contains_logic_of_function(sections, price, classes, prix_double, loop_num, names, i, arrLen, current_sec_index);
-    // while (i != true) {
-    //   current_sec_index = return_current_section_index(sections,current_sec_index, loop_num);
-    //   afficher_text();
-    //   System.out.print("put the number here : ");
-    //   loop_num = Terminal.lireInt();
-    //   System.out.println("it   : " + loop_num);
-    //   if (loop_num == 1) {
-    //     if_one_then(classes, price, names, arrLen, prix_double, current_sec_index, sections);
-    //   } else if (loop_num == 2) {
-    //     if(StringArrayLength(classes) == 0){
-    //       System.out.println("\nDesolé vous ne pouvez pas supprimer des classes");
-    //       System.out.println("Appuyer sur 1 pour ajouter une classe\n");
-    //     }else{
-    //       System.out.println("voici les lignes que vous avez le droit de supprimer");
-    //       int num;
-    //       showArrayWithDetails(classes);
-    //       System.out.print("choisissez un numero : ");
-    //       num = Terminal.lireInt();
-    //       classes = delete_classes(classes, num);
-    //       price = delete_price(price, num);
-    //     }
-    //   } else if (loop_num == 3) {
-    //     if_three_then(names, arrLen, sections);
-    //   }else if (loop_num == 5) {
-    //     showDevis(classes, price, sections);
-    //   } else if (loop_num == 6) {
-    //     showDevis(classes, price, sections);
-    //     System.out.println("AU REVOIR à BIENTOT");
-    //     i = true;
-    //   } else if (loop_num == 7) {
-    //     System.out.println("c izi en (ELSE) : " + loop_num);
-    //     i = true;
-    //   }else if (loop_num == 8) {
-    //     showArray(price);
-    //     showArray(classes);
-    //     showArray(sections);
-    //   }
-    // }
   }// MAIN
 
 }
